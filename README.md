@@ -1,3 +1,6 @@
+# Project information:
+A react app showcasing a small version of an E commerce store. This React app uses Typescript, React hooks and Redux toolkit. The folder structure is based on a high maintenance scalable app. The backend shall be replaced with Node server with Express or Laravel with Php.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
