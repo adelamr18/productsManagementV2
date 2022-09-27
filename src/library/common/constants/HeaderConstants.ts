@@ -1,0 +1,1 @@
+export const HEADER_TITLE = "Products Management V2";
