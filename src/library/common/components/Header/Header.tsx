@@ -3,7 +3,7 @@ import { FC } from "react";
 import "./Header.css";
 import { HEADER_TITLE } from "../../constants/HeaderConstants";
 
-export const Header: FC = () => {
+ const Header: FC = () => {
   return (
     <section className="header-container">
       <nav className="navbar navbar-light bg-light">
@@ -18,3 +18,5 @@ export const Header: FC = () => {
     </section>
   );
 };
+
+export default Header;

@@ -2,9 +2,9 @@ import React from "react";
 import { Provider } from "react-redux";
 
 import "./App.css";
-import { Header } from "./library/common/components/Header/Header";
+import { Header } from "./library/common/components";
 import { store } from "./main/store/store";
-import { Dashboard } from "./modules/Dashboard/Dashboard";
+import { Dashboard } from "./modules";
 
 function App() {
   return (

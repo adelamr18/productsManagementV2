@@ -3,7 +3,7 @@ import { FC } from "react";
 import { searchBarPlaceholder } from "../../constants/SearchBarConstants";
 import "./SearchBar.css";
 
-export const SearchBar: FC = () => {
+ const SearchBar: FC = () => {
   return (
     <div className="search-container-inner">
       <input
@@ -16,3 +16,5 @@ export const SearchBar: FC = () => {
     </div>
   );
 };
+
+export default SearchBar;

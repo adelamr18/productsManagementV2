@@ -4,7 +4,3 @@ export interface Product {
     price: number;
     quantity: number;
 }
-
-export interface ProductsState {
-    allProducts: Product[]
-}
