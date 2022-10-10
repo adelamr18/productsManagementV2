@@ -1,0 +1,1 @@
+export const TABLE_COLUMN_NAMES = ["Product Name", "Price", "Quantity"]

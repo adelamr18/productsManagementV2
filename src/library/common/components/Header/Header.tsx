@@ -3,7 +3,15 @@ import { FC } from "react";
 import "./Header.css";
 import { HEADER_TITLE } from "../../constants/HeaderConstants";
 
- const Header: FC = () => {
+interface HeaderProps {
+  onBasketToggle: () => void;
+}
+
+const Header: FC<HeaderProps> = ({ onBasketToggle }) => {
+  const toggleShoppingCart = (): void => {
+    onBasketToggle();
+  };
+
   return (
     <section className="header-container">
       <nav className="navbar navbar-light bg-light">
@@ -11,8 +19,8 @@ import { HEADER_TITLE } from "../../constants/HeaderConstants";
           <span className="navbar-brand mb-0 h1">{HEADER_TITLE}</span>
         </div>
         <div className="shopping-icon-with-products">
-          <div className="products-number">1</div>
-          <div className="fas fa-shopping-cart"></div>
+          <div className="products-number">0</div>
+          <div onClick={toggleShoppingCart} className="fas fa-shopping-cart"></div>
         </div>
       </nav>
     </section>

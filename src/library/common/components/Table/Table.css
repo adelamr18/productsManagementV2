@@ -1,0 +1,27 @@
+.fa-plus {
+  cursor: pointer;
+}
+.qty {
+  width: 0.3rem;
+}
+.price-coloumn {
+  cursor: pointer;
+}
+.alert-danger {
+  width: 50%;
+}
+.form-control-modifed-width {
+  width: 60px;
+}
+.table-container {
+  width: 1600px;
+  margin: auto;
+  margin-top: 50px;
+}
+.quantity-container {
+    display: flex;
+}
+.fa-plus {
+
+margin: 10px 10px;
+}
