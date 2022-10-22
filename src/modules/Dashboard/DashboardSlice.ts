@@ -1,6 +1,4 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
-import { stat } from "fs";
-
 import { GET_PRODUCTS } from "../../library/common/constants/Routes";
 import { DashboardState } from "../../library/common/interfaces/Dashboard";
 import { Product } from "../../library/common/interfaces/Product";
@@ -27,6 +25,9 @@ const initialState = {
 interface AddProductPayload {
   product: Product;
   typedQuantity: number;
+}
+interface DeleteProductPayload {
+  id: string;
 }
 
 const dashboardSlice = createSlice({
@@ -55,7 +56,6 @@ const dashboardSlice = createSlice({
         if (previouslyAddedProduct) {
           const product = products.find((elem: Product) => elem.id === id);
           if (product && (typedQuantity + previouslyAddedProduct.quantity <= product?.quantity)) {
-            debugger;
             return {
               ...state,
               addedProducts: state.addedProducts.map((product: Product) => {
@@ -87,6 +87,14 @@ const dashboardSlice = createSlice({
         )
       }
 
+    },
+    DeleteProduct(state: DashboardState, action: PayloadAction<DeleteProductPayload>) {
+      const { id } = action.payload;
+
+      return {
+        ...state,
+        addedProducts: state.addedProducts.filter((product: Product) => product.id !== id)
+      }
     }
   },
   extraReducers: {
@@ -104,7 +112,7 @@ const dashboardSlice = createSlice({
   },
 });
 
-export const { AddSelectedProduct } = dashboardSlice.actions;
+export const { AddSelectedProduct, DeleteProduct } = dashboardSlice.actions;
 
 export type AppDispatch = typeof store.dispatch;
 

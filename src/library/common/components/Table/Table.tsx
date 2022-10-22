@@ -2,7 +2,7 @@ import { ChangeEvent, FC, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { Product } from "../../interfaces/Product";
-import { TABLE_COLUMN_NAMES } from "../../constants/Table";
+import { ALREADY_ADDED_PRODUCT_ERROR, TABLE_COLUMN_NAMES } from "../../constants/Table";
 import "./Table.css";
 import { AddSelectedProduct } from "../../../../modules/Dashboard/DashboardSlice";
 import { hasQuantityExceedingError } from "../../../../modules/Dashboard/selectors";
@@ -15,10 +15,7 @@ interface TableProps {
 const Table: FC<TableProps> = ({ products }) => {
   const [userProducts, setUserProducts] = useState<Product[]>();
   const dispatch = useDispatch();
-  const hasExceedingQuantity: boolean = useSelector((state: GlobalState) => hasQuantityExceedingError(state));
-  if(hasExceedingQuantity) {
-    console.log('error yah')
-  }
+  const hasExceedingQuantity: boolean = useSelector((state: GlobalState) => hasQuantityExceedingError(state)); 
 
   const onQuantityChange = (event: ChangeEvent<HTMLInputElement>, userProduct: Product) => {
     event.preventDefault();
@@ -36,7 +33,6 @@ const Table: FC<TableProps> = ({ products }) => {
   };
 
   const addProduct = (product: Product): void => {
-    console.log('here');
     const typedProduct = userProducts?.find((elem: Product) => elem.id === product.id);
     if (typedProduct) {
       dispatch(
@@ -54,6 +50,8 @@ const Table: FC<TableProps> = ({ products }) => {
 
   return (
     <div className="table-container">
+      {hasExceedingQuantity && <div className="alert alert-danger"> {ALREADY_ADDED_PRODUCT_ERROR}</div>}
+
       <table className="table table-hover">
         <thead>
           <tr>

@@ -1,11 +1,13 @@
 import React, { useState } from "react";
-import { Provider } from "react-redux";
+import { useSelector } from "react-redux";
 
 import "./App.css";
 import { Header } from "./library/common/components";
 import BasketModal from "./library/common/components/BasketModal/BasketModal";
-import { store } from "./main/store/store";
+import { GlobalState } from "./library/common/interfaces/global";
+import { Product } from "./library/common/interfaces/Product";
 import { Dashboard } from "./modules";
+import { addedProductsSelector } from "./modules/Dashboard/selectors";
 
 function App() {
   const [basketVisbility, setBasketVisbility] = useState(false);
@@ -14,14 +16,14 @@ function App() {
     setBasketVisbility(!basketVisbility);
     setHeaderVisibility(true);
   };
+ const addedProducts: Product[] = useSelector((state: GlobalState) => addedProductsSelector(state));
+
   return (
-    <Provider store={store}>
       <div className="App">
-        <Header onBasketToggle={onBasketToggle} />
-        <BasketModal wasHeaderClicked={wasHeaderClicked} isBasketModalVisible={basketVisbility} />
+        <Header addedProducts={addedProducts} onBasketToggle={onBasketToggle} />
+        <BasketModal addedProducts={addedProducts}  wasHeaderClicked={wasHeaderClicked} isBasketModalVisible={basketVisbility} />
         <Dashboard />
       </div>
-    </Provider>
   );
 }
 

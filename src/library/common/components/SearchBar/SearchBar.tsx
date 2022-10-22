@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import { searchBarPlaceholder } from "../../constants/SearchBarConstants";
+import { searchBarPlaceholder } from "../../constants/SearchBar";
 import "./SearchBar.css";
 
  const SearchBar: FC = () => {
