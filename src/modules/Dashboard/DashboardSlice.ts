@@ -30,6 +30,11 @@ interface DeleteProductPayload {
   id: string;
 }
 
+interface UpdateProductPayload {
+  id: string;
+  quantity: number;
+}
+
 const dashboardSlice = createSlice({
   name: namespace,
   initialState,
@@ -95,6 +100,22 @@ const dashboardSlice = createSlice({
         ...state,
         addedProducts: state.addedProducts.filter((product: Product) => product.id !== id)
       }
+    },
+    UpdateProduct(state: DashboardState, action: PayloadAction<UpdateProductPayload>) {
+      const { id, quantity } = action.payload;
+
+      return {
+        ...state,
+        addedProducts: state.addedProducts.map((product: Product) => {
+          if (product.id === id) {
+            return {
+              ...product,
+              quantity: quantity,
+            };
+          }
+          return product;
+        })
+      }
     }
   },
   extraReducers: {
@@ -112,7 +133,7 @@ const dashboardSlice = createSlice({
   },
 });
 
-export const { AddSelectedProduct, DeleteProduct } = dashboardSlice.actions;
+export const { AddSelectedProduct, DeleteProduct, UpdateProduct } = dashboardSlice.actions;
 
 export type AppDispatch = typeof store.dispatch;
 

@@ -1,12 +1,15 @@
 import { ChangeEvent, FC, useEffect, useState } from "react";
-import "./BasketModal.css";
 import React from "react";
+import { useNavigate } from "react-router-dom";
+
 import { Product } from "../../interfaces/Product";
 import { useDispatch } from "react-redux";
-import { DeleteProduct } from "../../../../modules/Dashboard/DashboardSlice";
+import { DeleteProduct, UpdateProduct } from "../../../../modules/Dashboard/DashboardSlice";
 import { BASKET_TITLE, ADD_PRODUCTS_TO_CART, EURO, TOTAL_PRICE } from "../../constants/BasketModal";
 import { Button } from "../Button";
 import { ORDER } from "../../constants/Button";
+import "./BasketModal.css";
+import { APP_ROUTES } from "../../constants/Routes";
 interface BasketModalProps {
   isBasketModalVisible: boolean;
   wasHeaderClicked: boolean;
@@ -17,7 +20,7 @@ interface BasketModalProps {
 const BasketModal: FC<BasketModalProps> = ({ isBasketModalVisible = false, wasHeaderClicked, addedProducts }) => {
   const [userAddedProducts, setUserAddedProducts] = useState<Product[]>();
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   const determineBasketModalId = (): string => {
     if (wasHeaderClicked) {
       return isBasketModalVisible ? "selected" : "dismiss";
@@ -31,15 +34,10 @@ const BasketModal: FC<BasketModalProps> = ({ isBasketModalVisible = false, wasHe
 
   const onQuantityChange = (event: ChangeEvent<HTMLInputElement>, userProduct: Product) => {
     event.preventDefault();
-    setUserAddedProducts(
-      [...addedProducts].map((product: Product) => {
-        if (product.id === userProduct.id) {
-          return {
-            ...product,
-            quantity: parseInt(event.target.value),
-          };
-        }
-        return product;
+    dispatch(
+      UpdateProduct({
+        id: userProduct.id,
+        quantity: parseInt(event.target.value),
       })
     );
   };
@@ -58,7 +56,7 @@ const BasketModal: FC<BasketModalProps> = ({ isBasketModalVisible = false, wasHe
   };
 
   const navigateToRoute = () => {
-    alert("Navigated");
+    navigate(APP_ROUTES.SHIP);
   };
 
   return (
@@ -93,7 +91,7 @@ const BasketModal: FC<BasketModalProps> = ({ isBasketModalVisible = false, wasHe
                   <i className="far fa-trash-alt" onClick={() => deleteProduct(product.id)}></i>
                 </div>
                 <div className="product-price">
-                  {product.price} {EURO}
+                  {Math.floor(product.price * product.quantity)} {EURO}
                 </div>
               </div>
             );
