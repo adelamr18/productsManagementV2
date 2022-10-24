@@ -10,6 +10,7 @@ import { Button } from "../Button";
 import { ORDER } from "../../constants/Button";
 import "./BasketModal.css";
 import { APP_ROUTES } from "../../constants/Routes";
+
 interface BasketModalProps {
   isBasketModalVisible: boolean;
   wasHeaderClicked: boolean;

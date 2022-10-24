@@ -10,9 +10,9 @@ interface ButtonProps {
 
 const Button: FC<ButtonProps> = ({ enableFullWidth, navigateToRoute, buttonText }) => {
   return (
-    <div onClick={navigateToRoute} className={enableFullWidth ? "button-container full-width" : "button-container"}>
+    <button type="submit" onClick={navigateToRoute} className={enableFullWidth ? "button-container full-width " : "button-container"}>
       <span id="button-text">{buttonText}</span>
-    </div>
+    </button>
   );
 };
 

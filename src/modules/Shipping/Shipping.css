@@ -34,4 +34,10 @@
       padding: 4.0625rem;
     }
   }
+
+  p {
+    color: #d41a1a;
+    font-size: 14px;
+    margin: 4px 0 8px 0;
+  }
   
