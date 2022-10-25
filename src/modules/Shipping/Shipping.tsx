@@ -9,6 +9,7 @@ import { Button } from "../../library/common/components";
 import { CONTINUE } from "../../library/common/constants/Button";
 import { useDispatch } from "react-redux";
 import { setUserPaymentDetails, setUserShippingdetails } from "./ShippingSlice";
+import { APP_ROUTES } from "../../library/common/constants/Routes";
 
 const Shipping: FC = () => {
   const navigate = useNavigate();
@@ -28,6 +29,7 @@ const Shipping: FC = () => {
     validationSchema,
     onSubmit: (values) => {
       const { mobile, firstName, lastName, address, iban, cardHolder } = values;
+      
       dispatch(
         setUserPaymentDetails({
           userPaymentDetails: {
@@ -46,7 +48,7 @@ const Shipping: FC = () => {
           },
         })
       );
-      
+      navigate(APP_ROUTES.OVERVIEW);
     }
   });
   return (

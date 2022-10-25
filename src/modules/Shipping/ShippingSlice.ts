@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ShippingState } from "../../library/common/interfaces/Shipping";
 import { UserPaymentDetails, UserShipmentDetails } from "../../library/common/interfaces/UserDetails";
 

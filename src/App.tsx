@@ -10,6 +10,7 @@ import { Dashboard, Shipping } from "./modules";
 import { addedProductsSelector } from "./modules/Dashboard/selectors";
 import { Routes, Route } from "react-router-dom";
 import { APP_ROUTES } from "./library/common/constants/Routes";
+import { Overview } from "./modules/Overview";
 
 function App() {
   const [basketVisbility, setBasketVisbility] = useState(false);
@@ -27,6 +28,8 @@ function App() {
         <Routes>
           <Route path={APP_ROUTES.HOME} element={<Dashboard/>}/>
           <Route path={APP_ROUTES.SHIP} element={ <Shipping/>}/>
+          <Route path={APP_ROUTES.OVERVIEW} element={ <Overview/>}/>
+
         </Routes>
       </div>
   );
