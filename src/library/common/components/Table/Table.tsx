@@ -15,7 +15,7 @@ interface TableProps {
 const Table: FC<TableProps> = ({ products }) => {
   const [userProducts, setUserProducts] = useState<Product[]>();
   const dispatch = useDispatch();
-  const hasExceedingQuantity: boolean = useSelector((state: GlobalState) => hasQuantityExceedingError(state)); 
+  const hasExceedingQuantity: boolean = useSelector((state: GlobalState) => hasQuantityExceedingError(state));
 
   const onQuantityChange = (event: ChangeEvent<HTMLInputElement>, userProduct: Product) => {
     event.preventDefault();
@@ -55,8 +55,12 @@ const Table: FC<TableProps> = ({ products }) => {
       <table className="table table-hover">
         <thead>
           <tr>
-            {TABLE_COLUMN_NAMES.map((column: string) => {
-              return <th scope="col">{column}</th>;
+            {TABLE_COLUMN_NAMES.map((column: string, index: number) => {
+              return (
+                <th key={index} scope="col">
+                  {column}
+                </th>
+              );
             })}
           </tr>
         </thead>

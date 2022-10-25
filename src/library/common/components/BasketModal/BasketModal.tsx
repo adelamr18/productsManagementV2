@@ -84,7 +84,7 @@ const BasketModal: FC<BasketModalProps> = ({ isBasketModalVisible = false, wasHe
                   <input
                     value={product?.quantity}
                     type="number"
-                    className="form-control override-form-control-modified"
+                    className="form-control override-form-control-modified-v2"
                     onChange={(e: ChangeEvent<HTMLInputElement>) => onQuantityChange(e, product)}
                   />
                 </div>
