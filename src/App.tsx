@@ -11,6 +11,7 @@ import { addedProductsSelector } from "./modules/Dashboard/selectors";
 import { Routes, Route } from "react-router-dom";
 import { APP_ROUTES } from "./library/common/constants/Routes";
 import { Overview } from "./modules/Overview";
+import { OrderSuccess } from "./modules/OrderSuccess";
 
 function App() {
   const [basketVisbility, setBasketVisbility] = useState(false);
@@ -19,19 +20,19 @@ function App() {
     setBasketVisbility(!basketVisbility);
     setHeaderVisibility(true);
   };
- const addedProducts: Product[] = useSelector((state: GlobalState) => addedProductsSelector(state));
+  const addedProducts: Product[] = useSelector((state: GlobalState) => addedProductsSelector(state));
 
   return (
-      <div className="App">
-        <Header addedProducts={addedProducts} onBasketToggle={onBasketToggle} />
-        <BasketModal addedProducts={addedProducts}  wasHeaderClicked={wasHeaderClicked} isBasketModalVisible={basketVisbility} />
-        <Routes>
-          <Route path={APP_ROUTES.HOME} element={<Dashboard/>}/>
-          <Route path={APP_ROUTES.SHIP} element={ <Shipping/>}/>
-          <Route path={APP_ROUTES.OVERVIEW} element={ <Overview/>}/>
-
-        </Routes>
-      </div>
+    <div className="App">
+      <Header addedProducts={addedProducts} onBasketToggle={onBasketToggle} />
+      <BasketModal addedProducts={addedProducts} wasHeaderClicked={wasHeaderClicked} isBasketModalVisible={basketVisbility} />
+      <Routes>
+        <Route path={APP_ROUTES.HOME} element={<Dashboard />} />
+        <Route path={APP_ROUTES.SHIP} element={<Shipping />} />
+        <Route path={APP_ROUTES.OVERVIEW} element={<Overview addedProducts={addedProducts} />} />
+        <Route path={APP_ROUTES.SUCCESS} element={<OrderSuccess />} />
+      </Routes>
+    </div>
   );
 }
 
